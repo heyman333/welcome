@@ -1,9 +1,7 @@
 const update = (state, command) => {
   let nextState = null
   const commandKeys = Object.keys(command)
-  console.log("state", state)
-  console.log("commandKeys", commandKeys)
-
+  
   if (commandKeys[0].includes("$")) {
     switch (commandKeys[0]) {
       case "$set":
@@ -25,11 +23,7 @@ const update = (state, command) => {
     }
   } else {
     nextState = Object.assign({}, state)
-    console.log("nextState", nextState)
-
     Object.keys(command).forEach(key => {
-      console.log("each key", key)
-      console.log("command key", command[key])
       if (Object.keys(command[key]).length > 0) {
         console.log("nextState key", nextState[key])
         nextState[key] = update(state[key], command[key])
