@@ -1,7 +1,7 @@
 const update = (state, command) => {
   let nextState = null
   const commandKeys = Object.keys(command)
-  
+
   if (commandKeys[0].includes("$")) {
     switch (commandKeys[0]) {
       case "$set":
@@ -25,7 +25,6 @@ const update = (state, command) => {
     nextState = Object.assign({}, state)
     Object.keys(command).forEach(key => {
       if (Object.keys(command[key]).length > 0) {
-        console.log("nextState key", nextState[key])
         nextState[key] = update(state[key], command[key])
       } else {
         console.log("nextState does not have command")
